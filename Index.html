@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PASSA · Per a restaurants del Poblenou</title>
+<meta name="description" content="PASSA: la plataforma del Poblenou per demanar menjar i passar-lo a recollir. Sense riders ni comissions abusives. Parlem 15 minuts al teu local.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1F3FB0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M35 38V27a15 15 0 0 1 30 0v11' fill='none' stroke='%231F3FB0' stroke-width='7.5' stroke-linecap='round'/%3E%3Cpath d='M16 36h68l4 54a6 6 0 0 1-6 6.5H18a6 6 0 0 1-6-6.5z' fill='%231F3FB0'/%3E%3Ccircle cx='66' cy='52' r='7.5' fill='%23CF3B25'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,700..800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F7F2E8;--card:#FFFDF8;--blau:#1F3FB0;--nit:#13204A;--tom:#CF3B25;--cel:#DDE5F7;--kraft:#C8A27C;--muted:#4A5578;
+  --b:1.5px solid var(--nit);--fd:"Bricolage Grotesque",system-ui,sans-serif;--fb:"Atkinson Hyperlegible",system-ui,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--nit);font:17px/1.5 var(--fb)}
+a{color:var(--blau)}
+:focus-visible{outline:3px solid var(--tom);outline-offset:2px}
+.wrap{max-width:560px;margin:0 auto;padding:20px 20px calc(32px + env(safe-area-inset-bottom))}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:env(safe-area-inset-top)}
+.logo{height:40px;width:auto;display:block}
+.lang{display:flex;border:var(--b);border-radius:6px;overflow:hidden}
+.lang button{border:0;background:var(--card);font:700 15px var(--fb);color:var(--nit);min-width:48px;min-height:44px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--nit);color:var(--paper)}
+.hero{margin:28px 0 20px}
+.tag{display:inline-block;background:var(--tom);color:#fff;font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;padding:5px 10px;border-radius:4px;transform:rotate(-3deg);margin-bottom:14px}
+h1{font-family:var(--fd);font-weight:800;font-stretch:85%;letter-spacing:-.01em;font-size:44px;line-height:.98;color:var(--blau);margin:0 0 14px}
+.lead{font-size:19px;margin:0}
+.points{list-style:none;padding:0;margin:20px 0 0;border-top:1.5px dashed var(--kraft)}
+.points li{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1.5px dashed var(--kraft)}
+.points svg{flex:none;width:22px;height:22px;margin-top:2px}
+h2{font-family:var(--fd);font-weight:800;font-stretch:90%;font-size:26px;line-height:1.1;margin:30px 0 6px}
+.sub{margin:0 0 16px;color:var(--muted)}
+.ctas{display:flex;flex-direction:column;gap:10px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:12px 18px;border-radius:6px;font:700 17px var(--fb);text-decoration:none;text-align:center;cursor:pointer;border:var(--b);background:var(--card);color:var(--nit);width:100%}
+.btn svg{width:22px;height:22px;flex:none}
+.btn.pri{background:var(--tom);border-color:var(--tom);color:#fff;text-transform:uppercase;letter-spacing:.04em}
+.btn.sec{background:var(--blau);border-color:var(--blau);color:var(--paper)}
+.hint{font-size:15px;color:var(--muted);text-align:center;margin:2px 0 0}
+form{background:var(--card);border:var(--b);border-radius:8px;padding:18px;margin-top:12px}
+.f{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;font-weight:700;font-size:16px}
+.f input,.f select{font:400 17px var(--fb);color:var(--nit);border:var(--b);border-radius:6px;background:#fff;padding:10px 12px;min-height:48px;width:100%}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:15px;margin:4px 0 14px}
+.chk input{width:22px;height:22px;flex:none;margin:2px 0 0;accent-color:var(--blau)}
+.privacy{font-size:14px;color:var(--muted);border-top:1.5px dashed var(--kraft);padding-top:12px;margin-top:4px}
+.privacy p{margin:0 0 6px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.err{color:#A32A17;font-weight:700;font-size:15px;margin:0 0 12px}
+.ok{background:var(--cel);border:var(--b);border-radius:8px;padding:18px;margin-top:12px}
+.ok h3{font-family:var(--fd);font-weight:800;font-size:24px;margin:0 0 6px;color:var(--blau)}
+footer{margin-top:36px;font-size:14px;color:var(--muted);border-top:1.5px dashed var(--kraft);padding-top:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+[hidden]{display:none!important}
+@media (min-width:600px){h1{font-size:56px}.wrap{padding-top:32px}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <svg role="img" aria-label="PASSA" class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 372 120" width="372" height="120"><g transform="translate(0,0) scale(1.2)"><path d="M35 38 V27 a15 15 0 0 1 30 0 V38" fill="none" stroke="#1F3FB0" stroke-width="7.5" stroke-linecap="round"/><path d="M16 36 H84 L88 90 a6 6 0 0 1 -6 6.5 H18 a6 6 0 0 1 -6 -6.5 Z" fill="#1F3FB0"/><path d="M30 86 C30 74 44 74 50 70 C58 65 66 64 66 56" fill="none" stroke="#F7F2E8" stroke-width="6" stroke-linecap="round" stroke-dasharray="0.1 10.5"/><circle cx="30" cy="86" r="4.2" fill="#F7F2E8"/><circle cx="66" cy="52" r="7.5" fill="#CF3B25"/><circle cx="66" cy="52" r="2.8" fill="#1F3FB0"/></g><path d="M150.29090909090908 96.2181818181818V82.69090909090907H156.4Q160.3272727272727 82.69090909090907 162.07272727272726 79.5272727272727Q163.8181818181818 76.36363636363635 163.8181818181818 69.05454545454543Q163.8181818181818 62.83636363636362 162.07272727272726 59.72727272727271Q160.3272727272727 56.6181818181818 156.72727272727272 56.6181818181818H150.29090909090908V43.19999999999999H158.8Q162.4 43.19999999999999 166.3272727272727 44.72727272727271Q170.25454545454545 46.254545454545436 173.74545454545455 49.4181818181818Q177.23636363636365 52.581818181818164 179.36363636363637 57.65454545454544Q181.4909090909091 62.72727272727271 181.4909090909091 69.81818181818181Q181.4909090909091 78.43636363636362 178.16363636363639 84.32727272727271Q174.83636363636364 90.2181818181818 168.94545454545454 93.2181818181818Q163.05454545454546 96.2181818181818 155.3090909090909 96.2181818181818ZM138.1818181818182 115.19999999999999V43.19999999999999H154.9818181818182V115.19999999999999Z M182.47272727272727 115.19999999999999 194.47272727272727 43.19999999999999H218.25454545454545L230.14545454545456 115.19999999999999H212.6909090909091L206.47272727272727 55.96363636363635H205.6L200.03636363636363 115.19999999999999ZM193.38181818181818 103.19999999999999V92.29090909090908H218.58181818181816V103.19999999999999Z M253.05454545454546 116.5090909090909Q246.83636363636364 116.5090909090909 242.36363636363637 114.65454545454544Q237.8909090909091 112.79999999999998 235.27272727272728 109.25454545454544Q232.65454545454546 105.70909090909089 232.05454545454546 100.74545454545452Q231.45454545454547 95.78181818181817 233.0909090909091 89.56363636363635L248.5818181818182 87.49090909090907Q247.92727272727274 91.63636363636363 248.03636363636366 95.5090909090909Q248.14545454545456 99.38181818181818 249.34545454545457 101.83636363636363Q250.54545454545456 104.29090909090908 253.27272727272728 104.29090909090908Q254.5818181818182 104.29090909090908 255.5090909090909 103.63636363636363Q256.43636363636364 102.98181818181817 256.92727272727274 101.67272727272726Q257.41818181818184 100.36363636363635 257.41818181818184 98.29090909090908Q257.41818181818184 94.25454545454545 255.72727272727275 91.36363636363635Q254.03636363636366 88.47272727272725 251.41818181818184 86.29090909090908Q248.8 84.1090909090909 246.0727272727273 82.25454545454545Q243.6727272727273 80.5090909090909 241.16363636363639 78.49090909090907Q238.65454545454546 76.47272727272725 236.5818181818182 73.90909090909089Q234.50909090909093 71.34545454545453 233.25454545454545 68.07272727272726Q232.0 64.79999999999998 232.0 60.54545454545453Q232.0 54.98181818181816 234.4 50.78181818181817Q236.8 46.581818181818164 241.43636363636364 44.23636363636362Q246.0727272727273 41.890909090909076 252.61818181818182 41.890909090909076Q260.03636363636366 41.890909090909076 264.7818181818182 44.83636363636362Q269.52727272727276 47.78181818181817 271.54545454545456 53.290909090909075Q273.56363636363636 58.79999999999998 272.6909090909091 66.43636363636362L257.52727272727276 68.39999999999998Q257.8545454545455 65.78181818181817 257.8 63.327272727272714Q257.74545454545455 60.87272727272726 257.20000000000005 58.90909090909089Q256.6545454545455 56.94545454545453 255.50909090909093 55.79999999999998Q254.36363636363637 54.65454545454544 252.61818181818182 54.65454545454544Q251.41818181818184 54.65454545454544 250.4909090909091 55.3090909090909Q249.56363636363636 55.96363636363635 249.07272727272726 57.109090909090895Q248.5818181818182 58.254545454545436 248.5818181818182 59.890909090909076Q248.5818181818182 62.6181818181818 249.8909090909091 64.63636363636363Q251.20000000000002 66.65454545454544 253.32727272727274 68.23636363636362Q255.45454545454547 69.81818181818181 257.74545454545455 71.34545454545453Q260.90909090909093 73.41818181818181 263.8545454545455 75.76363636363635Q266.8 78.1090909090909 269.1454545454545 81.05454545454543Q271.4909090909091 83.99999999999999 272.8545454545455 87.81818181818181Q274.21818181818185 91.63636363636363 274.21818181818185 96.65454545454544Q274.21818181818185 102.32727272727271 272.0909090909091 106.85454545454544Q269.9636363636364 111.38181818181818 265.32727272727277 113.94545454545454Q260.6909090909091 116.5090909090909 253.05454545454546 116.5090909090909Z M298.0 116.5090909090909Q291.7818181818182 116.5090909090909 287.3090909090909 114.65454545454544Q282.8363636363636 112.79999999999998 280.21818181818185 109.25454545454544Q277.6 105.70909090909089 277.0 100.74545454545452Q276.4 95.78181818181817 278.03636363636366 89.56363636363635L293.5272727272727 87.49090909090907Q292.8727272727273 91.63636363636363 292.9818181818182 95.5090909090909Q293.0909090909091 99.38181818181818 294.2909090909091 101.83636363636363Q295.4909090909091 104.29090909090908 298.21818181818185 104.29090909090908Q299.5272727272727 104.29090909090908 300.45454545454544 103.63636363636363Q301.3818181818182 102.98181818181817 301.8727272727273 101.67272727272726Q302.3636363636364 100.36363636363635 302.3636363636364 98.29090909090908Q302.3636363636364 94.25454545454545 300.6727272727273 91.36363636363635Q298.9818181818182 88.47272727272725 296.3636363636364 86.29090909090908Q293.74545454545455 84.1090909090909 291.0181818181818 82.25454545454545Q288.6181818181818 80.5090909090909 286.1090909090909 78.49090909090907Q283.6 76.47272727272725 281.5272727272727 73.90909090909089Q279.45454545454544 71.34545454545453 278.2 68.07272727272726Q276.94545454545454 64.79999999999998 276.94545454545454 60.54545454545453Q276.94545454545454 54.98181818181816 279.3454545454546 50.78181818181817Q281.74545454545455 46.581818181818164 286.3818181818182 44.23636363636362Q291.0181818181818 41.890909090909076 297.56363636363636 41.890909090909076Q304.9818181818182 41.890909090909076 309.72727272727275 44.83636363636362Q314.4727272727273 47.78181818181817 316.4909090909091 53.290909090909075Q318.5090909090909 58.79999999999998 317.6363636363636 66.43636363636362L302.4727272727273 68.39999999999998Q302.8 65.78181818181817 302.74545454545455 63.327272727272714Q302.6909090909091 60.87272727272726 302.1454545454545 58.90909090909089Q301.6 56.94545454545453 300.4545454545455 55.79999999999998Q299.3090909090909 54.65454545454544 297.56363636363636 54.65454545454544Q296.3636363636364 54.65454545454544 295.43636363636364 55.3090909090909Q294.5090909090909 55.96363636363635 294.0181818181818 57.109090909090895Q293.5272727272727 58.254545454545436 293.5272727272727 59.890909090909076Q293.5272727272727 62.6181818181818 294.8363636363636 64.63636363636363Q296.1454545454545 66.65454545454544 298.27272727272725 68.23636363636362Q300.4 69.81818181818181 302.6909090909091 71.34545454545453Q305.8545454545455 73.41818181818181 308.8 75.76363636363635Q311.74545454545455 78.1090909090909 314.0909090909091 81.05454545454543Q316.43636363636364 83.99999999999999 317.8 87.81818181818181Q319.1636363636364 91.63636363636363 319.1636363636364 96.65454545454544Q319.1636363636364 102.32727272727271 317.03636363636366 106.85454545454544Q314.90909090909093 111.38181818181818 310.27272727272725 113.94545454545454Q305.6363636363636 116.5090909090909 298.0 116.5090909090909Z M320.47272727272724 115.19999999999999 332.4727272727273 43.19999999999999H356.25454545454545L368.1454545454545 115.19999999999999H350.6909090909091L344.4727272727273 55.96363636363635H343.6L338.03636363636366 115.19999999999999ZM331.3818181818182 103.19999999999999V92.29090909090908H356.58181818181816V103.19999999999999Z" fill="#1F3FB0"/></svg>
+  <div class="lang" role="group" aria-label="Idioma / Language">
+    <button type="button" data-lang="ca" aria-pressed="true">CA</button>
+    <button type="button" data-lang="es" aria-pressed="false">ES</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <span class="tag" data-i="tag">Per a restaurants del Poblenou</span>
+  <h1>PASSA <span data-i="h1">de comissions.</span></h1>
+  <p class="lead" data-i="lead">La plataforma del barri per demanar menjar i passar-lo a recollir al teu local.</p>
+  <ul class="points">
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#CF3B25"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i="p1">Sense riders ni comissions abusives.</span></li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#CF3B25"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i="p2">El marge que avui es queda la plataforma, es queda amb tu.</span></li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#CF3B25"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i="p3">El client és teu: veïns que passen a buscar-ho.</span></li>
+  </ul>
+</section>
+
+<section aria-labelledby="h-parlem">
+  <h2 id="h-parlem" data-i="h2">Parlem 15 minuts al teu local</h2>
+  <p class="sub" data-i="sub">T’ho ensenyem i t’ajudem a donar-te d’alta. Tria com et va millor:</p>
+  <div class="ctas">
+    <a class="btn pri" id="book" href="https://calendar.app.google/2tZQQuX471KuAwFo9" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h2M14 14h2M8 17h2"/></svg><span data-i="b1">Reserva una hora</span></a>
+    <a class="btn sec" id="wa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.6-5.2A8.5 8.5 0 1 1 21 11.5z"/></svg><span data-i="b2">Escriu-nos per WhatsApp</span></a>
+    <a class="btn" href="#truquem" id="callbtn"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span data-i="b3">Prefereixo que em truqueu</span></a>
+  </div>
+  <p class="hint" data-i="hint">Visites de dilluns a diumenge, de 9:00 a 21:00. Ens adaptem al teu restaurant.</p>
+</section>
+
+<section id="truquem" aria-labelledby="h-truquem">
+  <h2 id="h-truquem" data-i="h3">Et truquem nosaltres</h2>
+  <form id="form" novalidate>
+    <p class="err" id="err" role="alert" hidden></p>
+    <label class="f"><span data-i="f1">Nom</span><input name="nombre" autocomplete="name" required maxlength="80"></label>
+    <label class="f"><span data-i="f2">Restaurant</span><input name="restaurante" autocomplete="organization" required maxlength="120"></label>
+    <label class="f"><span data-i="f3">Telèfon o WhatsApp</span><input name="telefono" type="tel" inputmode="tel" autocomplete="tel" required maxlength="25"></label>
+    <label class="f"><span data-i="f4">Millor moment per trucar</span>
+      <select name="horario">
+        <option value="Mañana (9–14)" data-i="o1">Matí (9:00–14:00)</option>
+        <option value="Tarde (14–21)" data-i="o2">Tarda (14:00–21:00)</option>
+        <option value="Indiferente" data-i="o3" selected>M’és igual</option>
+      </select>
+    </label>
+    <div class="hp" aria-hidden="true"><label>Web<input name="website" tabindex="-1" autocomplete="off"></label></div>
+    <label class="chk"><input type="checkbox" name="consent" required><span data-i="c1">He llegit la informació de privacitat i accepto que PASSA em contacti per presentar-me el servei.</span></label>
+    <button class="btn sec" type="submit" id="send" data-i="send">Enviar</button>
+    <div class="privacy">
+      <p data-i="pv1"><b>Responsable:</b> Alejandro Gálvez. <b>Finalitat:</b> contactar-te per presentar-te PASSA i, si t’interessa, ajudar-te a donar-te d’alta.</p>
+      <p data-i="pv2"><b>Base:</b> el teu consentiment. <b>Conservació:</b> fins que ens demanis esborrar-les o com a màxim 12 mesos. No les cedim a tercers.</p>
+      <p data-i="pv3"><b>Drets:</b> accés, rectificació, supressió i oposició escrivint a <a href="mailto:alegalveznavajas@gmail.com">alegalveznavajas@gmail.com</a>.</p>
+    </div>
+  </form>
+  <div class="ok" id="ok" hidden tabindex="-1">
+    <h3 data-i="ok1">Gràcies!</h3>
+    <p data-i="ok2" style="margin:0">Et trucarem aviat a l’hora que ens has dit. Si tens pressa, escriu-nos per WhatsApp.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <span>PASSA · Poblenou, Barcelona</span>
+  <span data-i="foot">El marge es queda amb tu.</span>
+</footer>
+</div>
+
+<script>
+/* ===== Configuració ===== */
+const CONFIG = {
+  // URL de l'aplicació web d'Apps Script (formulario-solicitudes.gs) un cop implementada. Acaba en /exec.
+  ENDPOINT: 'https://script.google.com/macros/s/AKfycbxax2JcYa9zKi9qb5Umj6qmhupurGfWC5oNd3dEtT_3Y89k_95i6199vNnW82aJtKobjg/exec',
+  WHATSAPP: '34610019278'
+};
+
+const T = {
+  ca: {},
+  es: {
+    tag: 'Para restaurantes del Poblenou', h1: 'de comisiones.',
+    lead: 'La plataforma del barrio para pedir comida y pasar a recogerla a tu local.',
+    p1: 'Sin riders ni comisiones abusivas.', p2: 'El margen que hoy se lleva la plataforma, se queda contigo.',
+    p3: 'El cliente es tuyo: vecinos que pasan a buscarlo.',
+    h2: 'Hablemos 15 minutos en tu local', sub: 'Te lo enseñamos y te ayudamos a darte de alta. Elige cómo te va mejor:',
+    b1: 'Reserva una hora', b2: 'Escríbenos por WhatsApp', b3: 'Prefiero que me llaméis',
+    hint: 'Visitas de lunes a domingo, de 9:00 a 21:00. Nos adaptamos a tu restaurante.',
+    h3: 'Te llamamos nosotros', f1: 'Nombre', f2: 'Restaurante', f3: 'Teléfono o WhatsApp', f4: 'Mejor momento para llamarte',
+    o1: 'Mañana (9:00–14:00)', o2: 'Tarde (14:00–21:00)', o3: 'Me da igual',
+    c1: 'He leído la información de privacidad y acepto que PASSA me contacte para presentarme el servicio.',
+    send: 'Enviar',
+    pv1: '<b>Responsable:</b> Alejandro Gálvez. <b>Finalidad:</b> contactarte para presentarte PASSA y, si te interesa, ayudarte a darte de alta.',
+    pv2: '<b>Base:</b> tu consentimiento. <b>Conservación:</b> hasta que nos pidas borrarlos o como máximo 12 meses. No los cedemos a terceros.',
+    pv3: '<b>Derechos:</b> acceso, rectificación, supresión y oposición escribiendo a <a href="mailto:alegalveznavajas@gmail.com">alegalveznavajas@gmail.com</a>.',
+    ok1: '¡Gracias!', ok2: 'Te llamaremos pronto a la hora que nos has dicho. Si tienes prisa, escríbenos por WhatsApp.',
+    foot: 'El margen se queda contigo.',
+    e1: 'Rellena el nombre, el restaurante y un teléfono válido.', e2: 'Marca la casilla de privacidad para continuar.',
+    e3: 'No se ha podido enviar. Prueba otra vez o escríbenos por WhatsApp.', sending: 'Enviando…',
+    wa: 'Hola! Tengo la tarjeta de PASSA y me gustaría saber más. Mi restaurante es: '
+  }
+};
+T.en = {
+  tag: 'For Poblenou restaurants', h1: 'de comissions.',
+  lead: 'The neighbourhood platform to order food and pick it up at your restaurant.',
+  p1: 'No riders, no abusive commissions.', p2: 'The margin the platform takes today stays with you.',
+  p3: 'The customer is yours: neighbours who pop in to pick up.',
+  h2: 'Let’s talk for 15 minutes at your restaurant', sub: 'We’ll show you how it works and help you sign up. Choose what suits you:',
+  b1: 'Book a time', b2: 'Message us on WhatsApp', b3: 'I’d rather you call me',
+  hint: 'Visits Monday to Sunday, 9:00 to 21:00. We adapt to your restaurant.',
+  h3: 'We’ll call you', f1: 'Name', f2: 'Restaurant', f3: 'Phone or WhatsApp', f4: 'Best time to call',
+  o1: 'Morning (9:00–14:00)', o2: 'Afternoon (14:00–21:00)', o3: 'Any time',
+  c1: 'I have read the privacy information and agree that PASSA may contact me to present the service.',
+  send: 'Send',
+  pv1: '<b>Data controller:</b> Alejandro Gálvez. <b>Purpose:</b> to contact you to present PASSA and, if you are interested, help you sign up.',
+  pv2: '<b>Legal basis:</b> your consent. <b>Retention:</b> until you ask us to delete it, or 12 months at most. We do not share it with third parties.',
+  pv3: '<b>Your rights:</b> access, rectification, erasure and objection by writing to <a href="mailto:alegalveznavajas@gmail.com">alegalveznavajas@gmail.com</a>.',
+  ok1: 'Thank you!', ok2: 'We’ll call you soon at the time you chose. In a hurry? Message us on WhatsApp.',
+  foot: 'The margin stays with you.',
+  e1: 'Please fill in your name, restaurant and a valid phone number.', e2: 'Please tick the privacy box to continue.',
+  e3: 'It could not be sent. Try again or message us on WhatsApp.', sending: 'Sending…',
+  wa: 'Hi! I have a PASSA card and I’d like to know more. My restaurant is: '
+};
+const CA_EXTRA = {
+  e1: 'Omple el nom, el restaurant i un telèfon vàlid.', e2: 'Marca la casella de privacitat per continuar.',
+  e3: 'No s’ha pogut enviar. Torna-ho a provar o escriu-nos per WhatsApp.', sending: 'Enviant…',
+  wa: 'Hola! Tinc la targeta de PASSA i m’agradaria saber-ne més. El meu restaurant és: '
+};
+// El català és el text original de la pàgina: es desa en obrir-la
+document.querySelectorAll('[data-i]').forEach(el => { T.ca[el.dataset.i] = el.innerHTML; });
+Object.assign(T.ca, CA_EXTRA);
+
+const params = new URLSearchParams(location.search);
+const nav = (navigator.language || '').toLowerCase();
+let lang = params.get('lang') || (nav.startsWith('ca') ? 'ca' : nav.startsWith('es') ? 'es' : nav ? 'en' : 'ca');
+const t = k => (T[lang] && T[lang][k]) || T.ca[k] || '';
+
+function setLang(l) {
+  lang = ['es', 'en'].includes(l) ? l : 'ca';
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i]').forEach(el => { const v = t(el.dataset.i); if (v) el.innerHTML = v; });
+  document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+  document.title = { ca: 'PASSA · Per a restaurants del Poblenou', es: 'PASSA · Para restaurantes del Poblenou', en: 'PASSA · For Poblenou restaurants' }[lang];
+  document.getElementById('wa').href = 'https://wa.me/' + CONFIG.WHATSAPP + '?text=' + encodeURIComponent(t('wa'));
+}
+document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+setLang(lang);
+
+/* ===== Formulari ===== */
+const form = document.getElementById('form'), err = document.getElementById('err'), send = document.getElementById('send');
+function showErr(msg) { err.textContent = msg; err.hidden = !msg; if (msg) err.scrollIntoView({ block: 'center' }); }
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const d = new FormData(form);
+  const tel = String(d.get('telefono') || '').replace(/[^\d+]/g, '');
+  if (!String(d.get('nombre')).trim() || !String(d.get('restaurante')).trim() || tel.replace(/\D/g, '').length < 9) return showErr(t('e1'));
+  if (!d.get('consent')) return showErr(t('e2'));
+  showErr('');
+  send.disabled = true; send.textContent = t('sending');
+  const body = new URLSearchParams({
+    nombre: String(d.get('nombre')).trim(), restaurante: String(d.get('restaurante')).trim(), telefono: String(d.get('telefono')).trim(),
+    horario: String(d.get('horario')), idioma: lang, consentimiento: 'Sí', website: String(d.get('website') || ''),
+    origen: params.get('utm_source') || params.get('src') || 'qr-tarjeta', pagina: location.href.split('#')[0]
+  });
+  try {
+    if (!/^https:\/\/script\.google\.com\//.test(CONFIG.ENDPOINT)) throw new Error('Falta configurar ENDPOINT');
+    // Apps Script no permet llegir la resposta des d'un altre domini: s'envia en mode no-cors
+    await fetch(CONFIG.ENDPOINT, { method: 'POST', mode: 'no-cors', body });
+    form.hidden = true;
+    const ok = document.getElementById('ok'); ok.hidden = false; ok.focus();
+  } catch (x) {
+    console.warn(x);
+    showErr(t('e3'));
+    send.disabled = false; send.textContent = t('send');
+  }
+});
+</script>
+</body>
+</html>
